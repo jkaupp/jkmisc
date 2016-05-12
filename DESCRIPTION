@@ -1,0 +1,8 @@
+Package: jkmisc
+Type: Package
+Title: Miscellaneous personal functions
+Version: 0.1.0
+Description: A simple package I use for my own personal analysis, plotting, etc.
+License: MIT
+LazyData: TRUE
+RoxygenNote: 5.0.1
