@@ -26,6 +26,7 @@
 #' @param axis axis \code{TRUE}, \code{FALSE}, [\code{xy}]
 #' @param ticks ticks
 #' @export
+
 theme_jk <- function(base_family="Oswald-Light",
                            base_size = 11,
                            strip_text_family = base_family,
@@ -33,20 +34,20 @@ theme_jk <- function(base_family="Oswald-Light",
                            plot_title_family="Oswald-Light",
                            plot_title_size = 18,
                            plot_title_margin = 10,
-                           subtitle_family="Oxygen-Italic",
+                           subtitle_family="Lato-Light",
                            subtitle_size = 12,
                            subtitle_margin = 15,
-                           caption_family="Oxygen-Regular",
+                           caption_family="Lato-Italic",
                            caption_size = 9,
                            caption_margin = 10,
-                           axis_title_family = subtitle_family,
+                           axis_title_family = "Oswald-Light",
                            axis_title_size = 9,
-                           axis_title_just = "rt",
+                           axis_title_just = "mm",
                            grid = TRUE,
                            axis = FALSE,
                            ticks = FALSE) {
 
-  ret <- theme_minimal(base_family=base_family, base_size=base_size)
+  ret <- ggplot2::theme_minimal(base_family=base_family, base_size=base_size)
 
   ret <- ret + theme(legend.background=element_blank())
   ret <- ret + theme(legend.key=element_blank())
@@ -116,6 +117,5 @@ theme_jk <- function(base_family="Oswald-Light",
 
   ret
 
-  complete = TRUE
 }
 
