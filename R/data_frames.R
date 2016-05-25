@@ -10,11 +10,12 @@ match_type <- function(data = NULL, template = NULL) {
     stop("Please provide both data and a template to match to.")
   }
 
-  if(names(template) != names(data)){
-    stop("Data and template must have identical columns names.")
+  if(any(names(template) != names(data))){
+    stop("Data and template must have identical columns names")
   }
 
-  data <- as.data.frame(suppressWarnings(mapply(FUN = as,data,sapply(template,class), SIMPLIFY = FALSE)))
+  data <- as.data.frame(suppressWarnings(mapply(FUN = as,data,sapply(template,class), SIMPLIFY = FALSE)), stringsAsFactors = FALSE)
+
   return(data)
 }
 
@@ -32,8 +33,8 @@ bind_mrows <- function(df1 = NULL, df2 = NULL) {
     stop("Please provide both data and a template to match to.")
   }
 
-  if(names(df1) != names(df2)){
-    stop("Data and template must have identical columns names.")
+  if(any(names(df1) != names(df2))){
+    stop("Data and template must have identical columns names")
   }
 
   df2 <- as.data.frame(suppressWarnings(mapply(FUN = as,df2,sapply(df1,class), SIMPLIFY = FALSE)))
