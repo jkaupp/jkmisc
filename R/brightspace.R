@@ -11,19 +11,22 @@
 import_brightspace <- function(df, mode = "median")
 {
 
-
   # transform column names to lowercase
   df  <- magrittr::set_names(df,tolower(names(df)))
 
   # select needed columns,
   # Imports change between data available
 
-  df <- group_by(df, `org defined id`,`activity name`, `rubric name`,  criterion) %>%
+  temp <- group_by(df, `org defined id`,`activity name`, `rubric name`,  criterion) %>%
     distinct %>%
     ungroup %>%
-    select(`course code`, `org defined id`, `activity name`, `assessor first name`,`assessor last name`, criterion, level) %>%
+    select(`course code`, `org defined id`, `activity name`, `assessor first name`,`assessor last name`, criterion, points) %>%
     unite(assessor,`assessor first name`, `assessor last name`, sep = " ") %>%
     group_by(`org defined id`, `activity name`, criterion, assessor) %>%
+    mutate(plevel = cut(
+      points, c(0,3,4,5,6,8),labels = c("Not Demonstrated", "Marginal", "Meets Expectations", "High Quality", "Mastery"),
+      include.lowest = TRUE
+    ))
     mutate(level = factor(level, c("Not Demonstrated","Marginal","Developing","High Quality","Mastery")),
            score = as.numeric(level))
 

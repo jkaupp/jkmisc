@@ -10,7 +10,7 @@ match_type <- function(data = NULL, template = NULL) {
     stop("Please provide both data and a template to match to.")
   }
 
-  if(any(names(template) != names(data))){
+  if(!any(names(template) %in% names(data))){
     stop("Data and template must have identical columns names")
   }
 
@@ -33,7 +33,7 @@ bind_mrows <- function(df1 = NULL, df2 = NULL) {
     stop("Please provide both data and a template to match to.")
   }
 
-  if(any(names(df1) != names(df2))){
+  if(!any(names(df1) %in% names(df2))){
     stop("Data and template must have identical columns names")
   }
 
