@@ -6,8 +6,7 @@
 #'
 #' @return
 #' @export
-#'
-#' @examples
+
 grid_draw <- function(x) {
 
   grid::grid.newpage()
