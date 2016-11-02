@@ -10,7 +10,4 @@ Imports: ggplot2,
     dplyr,
     tidyr,
     magrittr,
-    purrr,
-    github
-Depends: ggplot2,
-    dplyr
+    purrr
