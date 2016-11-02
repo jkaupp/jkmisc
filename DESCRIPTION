@@ -7,7 +7,7 @@ License: MIT
 LazyData: TRUE
 RoxygenNote: 5.0.1
 Imports: ggplot2,
-    dplyr,
+    dplyr (>= 0.4),
     tidyr,
     magrittr,
     purrr
