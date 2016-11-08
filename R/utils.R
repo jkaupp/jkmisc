@@ -1,10 +1,11 @@
+#' @importFrom magrittr %>%
+magrittr::`%>%`
+
 #' grid_draw
 #'
 #' wrapper around grid.newpage() and grid.draw()
 #'
 #' @param x a grid object
-#'
-#' @return
 #' @export
 
 grid_draw <- function(x) {
@@ -64,11 +65,44 @@ clean_names <- function(dat){
 #' @export
 prog_from_plan <- function(x) {
 
-  dplyr::case_when(grepl("CHEE", x) ~ "CHEE",
-                   grepl("MECH|MEME",x) ~ "MECH",
-                   grepl("ECEN|ELEC|CMPE", x) ~ "ECE",
-                   grepl("MINE", x) ~ "MINE",
-                   grepl("CIVL", x) ~ "CIVL")
-
+  if (grepl("CHEE", x)) {
+    "CHEE"
+  } else if (grepl("MECH|MEME", x)) {
+    "MECH"
+  } else if (grepl("ECEN|ELEC|CMPE", x)) {
+    "ECE"
+  } else if (grepl("MINE", x)) {
+    "MINE"
+  } else if (grepl("CIVL", x)) {
+    "CIVL"
+  } else {
+    x
+  }
 
 }
+
+#' wrapper for Not In.  Finds values that don't match to a provided vector
+#'
+#' @param x input vector to compare
+#' @param table values to compare against
+#'
+#' @export
+`%notin%` <- function(x, table){
+
+  match(x, table, nomatch = 0L) == 0L
+
+}
+
+
+#' conveinence function to quickly filter all plans/concentrations under engineering
+#' currently used only for undergrad
+#'
+#' @param x academic plan or concetration
+#'
+#' @export
+in_FEAS <- function(x) {
+
+  grepl(c("ENGR|ECEN|ELEC|CMPE|CIVL|CHEE|ENCH|MINE|MECH|MEME|ENPH|GEOE|MTHE"), x)
+
+}
+

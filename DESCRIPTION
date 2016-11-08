@@ -3,11 +3,14 @@ Type: Package
 Title: Miscellaneous personal functions
 Version: 0.1.0
 Description: A simple package I use for my own personal analysis, plotting, etc.
-License: MIT
+Authors@R: person("Jake", "Kaupp", email = "jkaupp@gmail.com", role = "cre")
+License: MIT + file LICENSE
 LazyData: TRUE
 RoxygenNote: 5.0.1
 Imports: ggplot2,
-    dplyr (< 0.5),
+    dplyr (== 0.4.3),
     tidyr,
     magrittr,
-    purrr
+    purrr,
+    RColorBrewer,
+    stats
