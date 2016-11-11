@@ -102,7 +102,7 @@ prog_from_plan <- function(x) {
 #' @export
 in_FEAS <- function(x) {
 
-  grepl(c("ENGR|ECEN|ELEC|CMPE|CIVL|CHEE|ENCH|MINE|MECH|MEME|ENPH|GEOE|MTHE"), x)
+  grepl(c("ENGR|ECEN|ELEC|CMPE|CIVL|CHEE|ENCH|MINE|MECH|MEME|ENPH|GEOE|MTHE|PEPA|GSGE"), x)
 
 }
 
