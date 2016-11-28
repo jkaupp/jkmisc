@@ -6,12 +6,14 @@
 Credit to James Keirstead for the original function
 https://github.com/jkeirstead/r-slopegraph}
 \usage{
-calc_spaced_offset(.data, min_space)
+calc_spaced_offset(.data, min_space, target)
 }
 \arguments{
 \item{.data}{a data frame representing a single year of data}
 
 \item{min_space}{the minimum spacing between y values}
+
+\item{target}{target column to sort}
 }
 \value{
 a data frame
