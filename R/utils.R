@@ -127,3 +127,56 @@ in_FEAS <- function(x) {
 
 }
 
+#' Spaced sort for slopegraphs
+#'
+#' Calculates the position of each element to ensure a minimum
+#' space between adjacent entries within a column, while preserving
+#' rank order.  Group lines can cross
+#'
+#' Credit to James Keirstead for the original function
+#' https://github.com/jkeirstead/r-slopegraph
+#'
+#' @param .data the raw data frame
+#' @param min_space fraction of total data range to leave as a
+#' minimum gap
+#' @return a data frame with the ypos column added
+spaced_sort <- function(.data, min_space = 0.05) {
+  ## Define a minimum spacing (5% of full data range)
+  min_space <- min_space*diff(range(.data$diff))
+
+  data <- .data %>%
+    split(list(.$cohort)) %>%
+    purrr::map_df(~ calc_spaced_offset(.x, min_space))
+
+  return(data)
+}
+
+#' Calculates the vertical offset between successive data points
+#' Credit to James Keirstead for the original function
+#' https://github.com/jkeirstead/r-slopegraph
+#'
+#' @param .data a data frame representing a single year of data
+#' @param min_space the minimum spacing between y values
+#' @return a data frame
+calc_spaced_offset <- function(.data, min_space) {
+
+  ## Sort by value
+  ord <- order(.data$diff, decreasing = T)
+  ## Calculate the difference between adjacent values
+  delta <- -1*diff(.data$diff[ord])
+  ## Adjust to ensure that minimum space requirement is met
+  offset <- (min_space - delta)
+  offset <- replace(offset, offset < 0, 0)
+  ## Add a trailing zero for the lowest value
+  offset <- c(offset, 0)
+  ## Calculate the offset needed to be added to each point
+  ## as a cumulative sum of previous values
+  offset <- rev(cumsum(rev(offset)))
+  ## Assemble and return the new data frame
+  data <- .data %>%
+    dplyr::ungroup() %>%
+    dplyr::arrange(dplyr::desc(diff)) %>%
+    dplyr::mutate(mod_diff = offset + diff)
+
+  return(data)
+}
