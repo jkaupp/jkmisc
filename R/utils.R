@@ -140,6 +140,8 @@ in_FEAS <- function(x) {
 #' @param min_space fraction of total data range to leave as a
 #' minium gap
 #' @param target target column to sort
+#' @export
+#'
 #' @return a data frame with the ypos column added
 spaced_sort <- function(.data, min_space = 0.05, target) {
   ## Define a minimum spacing (5% of full data range)
@@ -160,6 +162,7 @@ spaced_sort <- function(.data, min_space = 0.05, target) {
 #' @param min_space the minimum spacing between y values
 #' @param target target column to sort
 #'
+#' @export
 #' @return a data frame
 calc_spaced_offset <- function(.data, min_space, target) {
 
