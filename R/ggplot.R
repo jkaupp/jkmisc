@@ -119,3 +119,36 @@ theme_jk <- function(base_family="Oswald-Light",
 
 }
 
+#' gtable_remove_grob
+#'
+#' Helper function to remove grobs by name, from gtables
+#'
+#' @param g, gtable with the grob removed
+#' @param pattern grob name or pattern to match
+#'
+#' @return g, with pattern removed.
+gtable_remove_grob <- function(g, pattern = "guide-box") {
+  matches <- c(grepl(pattern = pattern, g$layout$name))
+
+  g$layout <- g$layout[!matches, , drop = FALSE]
+
+  g$grobs <- g$grobs[!matches]
+  return(g)
+}
+
+#' gtable_extract_grob
+#'
+#' Helper function to extract a grob from gtables by name.
+#'
+#' @param g, the gtabel to extract the grob
+#' @param pattern, grob name or pattern to match
+#'
+#' @return g, a grob matching the specified pattern
+gtable_extract_grob <- function(g, pattern = "guide-box") {
+  matches <- grepl(pattern = pattern, g$layout$name)
+
+  g$layout <- g$layout[matches, , drop = FALSE]
+
+  g$grobs <- g$grobs[matches]
+  return(g)
+}
