@@ -4,14 +4,14 @@
 \alias{spaced_sort}
 \title{Spaced sort for slopegraphs}
 \usage{
-spaced_sort(.data, group, target, min_space = 0.05)
+spaced_sort(.data, target, group = NULL, min_space = 0.05)
 }
 \arguments{
 \item{.data}{the raw data frame}
 
-\item{group}{grouping column to split data on}
-
 \item{target}{target column to sort}
+
+\item{group}{grouping column to split data on}
 
 \item{min_space}{fraction of total data range to leave as a
 minium gap}

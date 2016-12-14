@@ -145,13 +145,19 @@ in_FEAS <- function(x) {
 #' @export
 #'
 #' @return a data frame with the ypos column added
-spaced_sort <- function(.data, group, target, min_space = 0.05) {
+spaced_sort <- function(.data, target, group = NULL, min_space = 0.05) {
   ## Define a minimum spacing (5% of full data range)
   min_space <- min_space*diff(range(.data[[target]]))
 
-  data <- .data %>%
-    split(interaction(.data[group])) %>%
-    purrr::map_df(~ calc_spaced_offset(.x, min_space, target))
+  if (!is.null(group)) {
+    data <- .data %>%
+      split(interaction(.data[group])) %>%
+      purrr::map_df(~ calc_spaced_offset(.x, min_space, target))
+  } else {
+
+    data <- calc_spaced_offset(.data, min_space, target)
+  }
+
 
   return(data)
 }
