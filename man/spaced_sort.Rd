@@ -4,15 +4,17 @@
 \alias{spaced_sort}
 \title{Spaced sort for slopegraphs}
 \usage{
-spaced_sort(.data, min_space = 0.05, target)
+spaced_sort(.data, group, target, min_space = 0.05)
 }
 \arguments{
 \item{.data}{the raw data frame}
 
-\item{min_space}{fraction of total data range to leave as a
-minium gap}
+\item{group}{grouping column to split data on}
 
 \item{target}{target column to sort}
+
+\item{min_space}{fraction of total data range to leave as a
+minium gap}
 }
 \value{
 a data frame with the ypos column added

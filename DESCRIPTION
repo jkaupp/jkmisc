@@ -11,4 +11,5 @@ Imports: ggplot2,
     magrittr,
     stats,
     purrr,
-    dplyr
+    dplyr,
+    lazyeval

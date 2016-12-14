@@ -139,16 +139,18 @@ in_FEAS <- function(x) {
 #' @param .data the raw data frame
 #' @param min_space fraction of total data range to leave as a
 #' minium gap
+#' @param group  grouping column to split data on
 #' @param target target column to sort
+#'
 #' @export
 #'
 #' @return a data frame with the ypos column added
-spaced_sort <- function(.data, min_space = 0.05, target) {
+spaced_sort <- function(.data, group, target, min_space = 0.05) {
   ## Define a minimum spacing (5% of full data range)
-  min_space <- min_space*diff(range(.data[target]))
+  min_space <- min_space*diff(range(.data[[target]]))
 
   data <- .data %>%
-    split(list(.$cohort)) %>%
+    split(group) %>%
     purrr::map_df(~ calc_spaced_offset(.x, min_space, target))
 
   return(data)
@@ -167,9 +169,10 @@ spaced_sort <- function(.data, min_space = 0.05, target) {
 calc_spaced_offset <- function(.data, min_space, target) {
 
   ## Sort by value
-  ord <- order(.data[target], decreasing = T)
+  ord <- order(.data[[target]], decreasing = T)
   ## Calculate the difference between adjacent values
-  delta <- -1*diff(dplyr::arrange(.data[target], ord))
+  delta <- -1*diff(.data[[target]][ord])
+  # delta <- -1*diff(dplyr::arrange(.data[target], ord))
   ## Adjust to ensure that minimum space requirement is met
   offset <- (min_space - delta)
   offset <- replace(offset, offset < 0, 0)
@@ -181,8 +184,8 @@ calc_spaced_offset <- function(.data, min_space, target) {
   ## Assemble and return the new data frame
   data <- .data %>%
     dplyr::ungroup() %>%
-    dplyr::arrange_(dplyr::desc(~target)) %>%
-    dplyr::mutate_(mod_diff = offset + ~target)
+    dplyr::arrange_(.dots = paste0("desc(", target, ")")) %>%
+    dplyr::mutate_(.dots = stats::setNames(list(lazyeval::interp(~ offset + var, var = as.name(target))), "spaced"))
 
   return(data)
 }
