@@ -150,7 +150,7 @@ spaced_sort <- function(.data, group, target, min_space = 0.05) {
   min_space <- min_space*diff(range(.data[[target]]))
 
   data <- .data %>%
-    split(group) %>%
+    split(interaction(.data[group])) %>%
     purrr::map_df(~ calc_spaced_offset(.x, min_space, target))
 
   return(data)
