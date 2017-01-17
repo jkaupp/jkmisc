@@ -1,22 +1,6 @@
 #' @importFrom magrittr %>%
 magrittr::`%>%`
 
-
-#' copy data to clipboard
-#'
-#' @param x
-#'
-#' @return
-#' @export
-#'
-#' @examples
-to_clipboard <- function(x) {
-  clip <- pipe("pbcopy", "w")
-  write.table(x, file = clip)
-  close(clip)
-}
-
-
 #' grid_draw
 #'
 #' wrapper around grid.newpage() and grid.draw()
