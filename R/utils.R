@@ -1,6 +1,22 @@
 #' @importFrom magrittr %>%
 magrittr::`%>%`
 
+
+#' copy data to clipboard
+#'
+#' @param x
+#'
+#' @return
+#' @export
+#'
+#' @examples
+to_clipboard <- function(x) {
+  clip <- pipe("pbcopy", "w")
+  write.table(x, file = clip)
+  close(clip)
+}
+
+
 #' grid_draw
 #'
 #' wrapper around grid.newpage() and grid.draw()
@@ -15,69 +31,6 @@ grid_draw <- function(x) {
   grid::grid.draw(x)
 
 }
-
-#' @title Cleans names of a data.frame.
-#'
-#' @description
-#' Resulting names are unique and consist only of the \code{_} character, lowercase letters, and numbers.
-#' From janitor
-#'
-#' @param dat the input data.frame.
-#' @return Returns the data.frame with clean names.
-#' @export
-#' @examples
-#' # not run:
-#' # clean_names(poorly_named_df)
-#'
-#' # library(dplyr) ; library(readxl)
-#' # not run:
-#' # readxl("messy_excel_file.xlsx") %>% clean_names()
-
-clean_names <- function(dat){
-
-  # Takes a data.frame, returns the same data frame with cleaned names
-  old_names <- names(dat)
-  new_names <- old_names %>%
-    gsub("'", "", .) %>% # remove quotation marks
-    gsub("\"", "", .) %>% # remove quotation marks
-    gsub("%", "percent", .) %>%
-    make.names(.) %>%
-    gsub("[.]+", "_", .) %>% # convert 1+ periods to single _
-    gsub("[_]+", "_", .) %>% # fix rare cases of multiple consecutive underscores
-    tolower(.) %>%
-    gsub("_$", "", .) # remove string-final underscores
-
-  # Handle duplicated names - they mess up dplyr pipelines
-  # This appends the column number to repeated instances of duplicate variable names
-  dupe_count <- sapply(1:length(new_names), function(i) { sum(new_names[i] == new_names[1:i]) })
-  new_names[dupe_count > 1] <- paste(new_names[dupe_count > 1],
-                                     dupe_count[dupe_count > 1],
-                                     sep = "_")
-  stats::setNames(dat, new_names)
-}
-
-
-
-#' @title Removes empty rows from a data.frame.
-#'
-#' @description
-#' Removes all rows from a data.frame that are composed entirely of \code{NA} values.
-#' From Janitor
-#'
-#' @param dat the input data.frame.
-#' @return Returns the data.frame with no empty rows.
-#' @export
-#' @examples
-#' # called with magrittr pipe %>% :
-#' # library(dplyr)
-#' # not run:
-#' # dat %>% remove_empty_rows
-
-remove_empty_rows <- function(dat){
-  dat[rowSums(is.na(dat)) != ncol(dat), ]
-}
-
-
 #' prog_from_plan
 #'
 #' @param x plan string
