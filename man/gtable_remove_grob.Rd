@@ -17,4 +17,3 @@ g, with pattern removed.
 \description{
 Helper function to remove grobs by name, from gtables
 }
-

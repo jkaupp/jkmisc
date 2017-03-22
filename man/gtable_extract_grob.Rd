@@ -17,4 +17,3 @@ g, a grob matching the specified pattern
 \description{
 Helper function to extract a grob from gtables by name.
 }
-

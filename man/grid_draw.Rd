@@ -12,4 +12,3 @@ grid_draw(x)
 \description{
 wrapper around grid.newpage() and grid.draw()
 }
-

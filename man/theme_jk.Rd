@@ -60,4 +60,3 @@ It requires installing Oswald fonts unless you change the font parameters
 \details{
 \url{https://www.google.com/fonts}
 }
-

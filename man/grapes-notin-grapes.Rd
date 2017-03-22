@@ -14,4 +14,3 @@ x \%notin\% table
 \description{
 wrapper for Not In.  Finds values that don't match to a provided vector
 }
-

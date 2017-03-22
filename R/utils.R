@@ -82,17 +82,17 @@ in_FEAS <- function(x) {
 #' @export
 #'
 #' @return a data frame with the ypos column added
-spaced_sort <- function(.data, target, group = NULL, min_space = 0.05) {
+slopegraph_sort <- function(.data, target, group = NULL, min_space = 0.05) {
   ## Define a minimum spacing (5% of full data range)
   min_space <- min_space*diff(range(.data[[target]]))
 
   if (!is.null(group)) {
     data <- .data %>%
-      split(interaction(.data[group])) %>%
+      split(interaction(.data[[group]])) %>%
       purrr::map_df(~ calc_spaced_offset(.x, min_space, target))
   } else {
 
-    data <- calc_spaced_offset(.data, min_space, target)
+    data <- slopegraph_offset(.data, min_space, target)
   }
 
 
@@ -109,7 +109,7 @@ spaced_sort <- function(.data, target, group = NULL, min_space = 0.05) {
 #'
 #' @export
 #' @return a data frame
-calc_spaced_offset <- function(.data, min_space, target) {
+slopegraph_offset <- function(.data, min_space, target) {
 
   ## Sort by value
   ord <- order(.data[[target]], decreasing = T)
@@ -133,3 +133,26 @@ calc_spaced_offset <- function(.data, min_space, target) {
   return(data)
 }
 
+#' Fix peoplesoft frozen data, accounting for degree, program and plan changes
+#'
+#' @param x input PS dataframe
+#'
+#' @return x the cleaned dataframe
+#' @export
+fix_frozen_data <- function(x) {
+
+  conc_change <- stats::setNames(c("ECEN", "PEPA", "MEME", "MTHE", "GSGE",
+                            "MINE", "CHEE", "CIVL", "DM-R", "GSGE", "MEME", "UN-R", "ECEN",
+                            "PEPA", "CHEE", "CHEE", "GSGE"),
+                          c("ECEN", "PEPA", "MEME", "MTHE", "GSGE",
+                            "MINE", "CHEE", "CIVL", "DM-R", "GEOE", "MECH", "UN-R", "ELEC",
+                            "ENPH", "ENCH", "CHEM", "GENG"))
+
+  x <- dplyr::mutate_(x, conc1 = ~dplyr::if_else(grepl("SGS", acad_group), conc_change[conc1], dplyr::if_else(stringi::stri_sub(acad_plan, 1, 4) == "ECEN" & acad_career == "UGRD", "ENGR", conc1)))
+
+  x <- dplyr::mutate_(x, acad_prog = ~dplyr::case_when(acad_prog == "BSCE" ~ "BASC",
+                                       acad_prog == "PHDD" ~ "PHD",
+                                       TRUE ~ acad_prog))
+
+  return(x)
+}

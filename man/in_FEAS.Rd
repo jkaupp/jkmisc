@@ -14,4 +14,3 @@ in_FEAS(x)
 conveinence function to quickly filter all plans/concentrations under engineering
 currently used only for undergrad
 }
-

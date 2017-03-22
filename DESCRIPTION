@@ -6,10 +6,11 @@ Description: A simple package I use for my own personal analysis, plotting, etc.
 Authors@R: person("Jake", "Kaupp", email = "jkaupp@gmail.com", role = "cre")
 License: MIT + file LICENSE
 LazyData: TRUE
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 Imports: ggplot2,
     magrittr,
     stats,
     purrr,
     dplyr,
-    lazyeval
+    lazyeval,
+    stringi
