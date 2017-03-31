@@ -89,7 +89,7 @@ slopegraph_sort <- function(.data, target, group = NULL, min_space = 0.05) {
   if (!is.null(group)) {
     data <- .data %>%
       split(interaction(.data[[group]])) %>%
-      purrr::map_df(~ calc_spaced_offset(.x, min_space, target))
+      purrr::map_df(~ slopegraph_offset(.x, min_space, target))
   } else {
 
     data <- slopegraph_offset(.data, min_space, target)
@@ -103,7 +103,7 @@ slopegraph_sort <- function(.data, target, group = NULL, min_space = 0.05) {
 #' Credit to James Keirstead for the original function
 #' https://github.com/jkeirstead/r-slopegraph
 #'
-#' @param .data a data frame representing a single year of data
+#' @param .data a data frame
 #' @param min_space the minimum spacing between y values
 #' @param target target column to sort
 #'
