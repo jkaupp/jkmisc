@@ -106,8 +106,6 @@ slopegraph_sort <- function(.data, target, group = NULL, min_space = 0.05) {
 #' @param .data a data frame
 #' @param min_space the minimum spacing between y values
 #' @param target target column to sort
-#'
-#' @export
 #' @return a data frame
 slopegraph_offset <- function(.data, min_space, target) {
 

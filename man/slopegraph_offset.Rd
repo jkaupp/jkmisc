@@ -9,7 +9,7 @@ https://github.com/jkeirstead/r-slopegraph}
 slopegraph_offset(.data, min_space, target)
 }
 \arguments{
-\item{.data}{a data frame representing a single year of data}
+\item{.data}{a data frame}
 
 \item{min_space}{the minimum spacing between y values}
 
