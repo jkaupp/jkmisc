@@ -7,8 +7,7 @@ Authors@R: person("Jake", "Kaupp", email = "jkaupp@gmail.com", role = "cre")
 License: MIT + file LICENSE
 LazyData: TRUE
 RoxygenNote: 6.0.1
-Imports: ggplot2,
-    magrittr,
+Imports: magrittr,
     stats,
     purrr,
     dplyr,
