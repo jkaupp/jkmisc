@@ -58,9 +58,12 @@ prog_from_plan <- function(x) {
 #' @param x academic plan or concetration
 #'
 #' @export
-in_FEAS <- function(x) {
+inFEAS <- function(x) {
 
-  grepl(c("ENGR|ECEN|ELEC|CMPE|CIVL|CHEE|ENCH|MINE|MECH|MEME|ENPH|GEOE|MTHE|PEPA|GSGE"), x)
+  table <- c("ENGR", "ECEN", "ELEC", "CMPE", "CIVL", "CHEE", "ENCH", "MINE", "MECH", "MEME", "ENPH", "GEOE", "MTHE", "PEPA", "GSGE")
+
+  match(x, table, nomatch = 0L) > 0L
+
 
 }
 
