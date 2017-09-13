@@ -62,7 +62,7 @@ inFEAS <- function(x) {
 
   table <- c("ENGR", "ECEN", "ELEC", "CMPE", "CIVL", "CHEE", "ENCH", "MINE", "MECH", "MEME", "ENPH", "GEOE", "MTHE", "PEPA", "GSGE")
 
-  match(x, table, nomatch = 0L) > 0L
+  pmatch(x, table, nomatch = 0L) > 0L
 
 
 }
