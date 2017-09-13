@@ -58,9 +58,13 @@ prog_from_plan <- function(x) {
 #' @param x academic plan or concetration
 #'
 #' @export
-inFEAS <- function(x) {
+inFEAS <- function(x, core = FALSE) {
 
-  table <- c("ENGR", "ECEN", "ELEC", "CMPE", "CIVL", "CHEE", "ENCH", "MINE", "MECH", "MEME", "ENPH", "GEOE", "MTHE", "PEPA", "GSGE")
+  if (core) {
+    table <- c("ENGR", "ECEN", "ELEC", "CMPE", "CIVL", "CHEE", "ENCH", "MINE", "MECH", "MEME")
+  } else {
+    table <- c("ENGR", "ECEN", "ELEC", "CMPE", "CIVL", "CHEE", "ENCH", "MINE", "MECH", "MEME", "ENPH", "GEOE", "MTHE", "PEPA", "GSGE")
+  }
 
   grepl(paste0(table, collapse = "|"), x)
 
