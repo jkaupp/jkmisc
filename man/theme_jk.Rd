@@ -5,14 +5,14 @@
 \title{My ggplot2 theme heavy credits for influencing the theme function
 go to @hrbrmstr (Bob Rudis)}
 \usage{
-theme_jk(base_family = "Oswald-Light", base_size = 11,
+theme_jk(base_family = "Oswald", base_size = 11,
   strip_text_family = base_family, strip_text_size = 12,
-  plot_title_family = "Oswald-Light", plot_title_size = 18,
+  plot_title_family = "Oswald", plot_title_size = 18,
   plot_title_margin = 10, subtitle_family = "Scope One",
   subtitle_size = 12, subtitle_margin = 15, caption_family = "Scope One",
-  caption_size = 9, caption_margin = 10,
-  axis_title_family = "Oswald-Light", axis_title_size = 9,
-  axis_title_just = "mm", grid = TRUE, axis = FALSE, ticks = FALSE)
+  caption_size = 9, caption_margin = 10, axis_title_family = "Oswald",
+  axis_title_size = 9, axis_title_just = "mm", grid = TRUE,
+  axis = FALSE, ticks = FALSE)
 }
 \arguments{
 \item{base_family}{base font family}

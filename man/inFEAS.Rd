@@ -5,7 +5,7 @@
 \title{conveinence function to quickly filter all plans/concentrations under engineering
 currently used only for undergrad}
 \usage{
-inFEAS(x)
+inFEAS(x, core = FALSE)
 }
 \arguments{
 \item{x}{academic plan or concetration}

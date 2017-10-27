@@ -27,11 +27,11 @@
 #' @param ticks ticks
 #' @export
 
-theme_jk <- function(base_family="Oswald-Light",
+theme_jk <- function(base_family="Oswald",
                            base_size = 11,
                            strip_text_family = base_family,
                            strip_text_size = 12,
-                           plot_title_family = "Oswald-Light",
+                           plot_title_family = "Oswald",
                            plot_title_size = 18,
                            plot_title_margin = 10,
                            subtitle_family = "Scope One",
@@ -40,7 +40,7 @@ theme_jk <- function(base_family="Oswald-Light",
                            caption_family = "Scope One",
                            caption_size = 9,
                            caption_margin = 10,
-                           axis_title_family = "Oswald-Light",
+                           axis_title_family = "Oswald",
                            axis_title_size = 9,
                            axis_title_just = "mm",
                            grid = TRUE,
