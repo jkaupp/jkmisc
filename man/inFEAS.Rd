@@ -9,6 +9,8 @@ inFEAS(x, core = FALSE)
 }
 \arguments{
 \item{x}{academic plan or concetration}
+
+\item{core}{TRUE/FALSE}
 }
 \description{
 conveinence function to quickly filter all plans/concentrations under engineering

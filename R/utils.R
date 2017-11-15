@@ -56,6 +56,7 @@ prog_from_plan <- function(x) {
 #' currently used only for undergrad
 #'
 #' @param x academic plan or concetration
+#' @param core TRUE/FALSE
 #'
 #' @export
 inFEAS <- function(x, core = FALSE) {

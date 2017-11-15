@@ -152,3 +152,44 @@ gtable_extract_grob <- function(g, pattern = "guide-box") {
   g$grobs <- g$grobs[matches]
   return(g)
 }
+
+
+date_from_term <- function(term) {
+
+  year <- as.numeric(sprintf("20%s", stringi::stri_sub(term, 2, 3)))
+
+  month <- as.numeric(stringi::stri_sub(term, 4, 4))
+
+  lubridate::make_date(year, month)
+
+}
+
+
+scale_ratio_labels <- function(labels) {
+
+  labels_out <- as.character(labels)
+
+  labels_out[length(labels)] <- sprintf("%s:1",as.character(labels[length(labels)]))
+
+  return(labels_out)
+
+}
+
+scale_percent_labels <- function(x){
+
+  x <- x*100
+
+  x[length(x)] <- paste0(x[length(x)], "%")
+
+  return(x)
+
+}
+
+scale_term_Year <- function(labels) {
+
+  labels_out <- sprintf("20%s", stringi::stri_sub(labels, 2, 3))
+
+  return(labels_out)
+
+
+}

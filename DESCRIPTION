@@ -13,4 +13,5 @@ Imports: magrittr,
     dplyr,
     lazyeval,
     stringi,
-    ggplot2
+    ggplot2,
+    lubridate
