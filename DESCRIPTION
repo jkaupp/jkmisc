@@ -1,17 +1,18 @@
 Package: jkmisc
-Type: Package
-Title: Miscellaneous personal functions
-Version: 0.1.0
-Description: A simple package I use for my own personal analysis, plotting, etc.
-Authors@R: person("Jake", "Kaupp", email = "jkaupp@gmail.com", role = "cre")
+Title: What the Package Does (one line, title case)
+Version: 0.0.1
+Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
+Description: What the package does (one paragraph).
+Depends: R (>= 3.3.2)
 License: MIT + file LICENSE
-LazyData: TRUE
-RoxygenNote: 6.0.1
-Imports: magrittr,
-    stats,
+Encoding: UTF-8
+LazyData: true
+Author: Jake Kaupp
+Maintainer: Jake Kaupp <jkaupp@gmail.com>
+Imports: ggplot2,
     purrr,
-    dplyr,
-    lazyeval,
     stringi,
-    ggplot2,
-    lubridate
+    dplyr,
+    lubridate,
+    magrittr
+RoxygenNote: 6.0.1
