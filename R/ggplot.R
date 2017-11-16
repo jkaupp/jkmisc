@@ -195,7 +195,7 @@ scale_percent_labels <- function(labels){
 #'
 #' @return formatted year labels
 #' @export
-scale_term_Year <- function(labels) {
+scale_ps_year <- function(labels) {
 
   labels_out <- sprintf("20%s", stringi::stri_sub(labels, 2, 3))
 
