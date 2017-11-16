@@ -1,8 +1,8 @@
 Package: jkmisc
-Title: What the Package Does (one line, title case)
+Title: Miscellaneous Personal Functions
 Version: 0.0.1
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Authors@R: person("Jake", "Kaupp", email = "jkaupp@gmail.com", role = c("aut", "cre"))
+Description: This is a package containing various helper functions, themes, palettes for most of my internal work at Queen's University.    
 Depends: R (>= 3.3.2)
 License: MIT + file LICENSE
 Encoding: UTF-8

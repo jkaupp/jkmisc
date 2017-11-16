@@ -159,7 +159,7 @@ gtable_extract_grob <- function(g, pattern = "guide-box") {
 
 #' Five thirty-eight style formatter for Ratios
 #'
-#' @param labels
+#' @param labels vector of labels
 #'
 #' @return formatted ratio labels
 #' @export
@@ -175,23 +175,23 @@ scale_ratio_labels <- function(labels) {
 
 #' Five thirty-eight style formatter for percentages
 #'
-#' @param labels
+#' @param labels vector of labels
 #'
 #' @return formatted percent labels
 #' @export
-scale_percent_labels <- function(x){
+scale_percent_labels <- function(labels){
 
-  x <- x*100
+  labels <- labels*100
 
-  x[length(x)] <- paste0(x[length(x)], "%")
+  labels[length(labels)] <- paste0(labels[length(labels)], "%")
 
-  return(x)
+  return(labels)
 
 }
 
 #' Custom formatter for peoplesoft terms
 #'
-#' @param labels
+#' @param labels vector of labels
 #'
 #' @return formatted year labels
 #' @export

@@ -99,7 +99,7 @@ fix_frozen_data <- function(x) {
 
 #' Produce Date from Peoplesoft Term
 #'
-#' @param term
+#' @param term a peoplesoft term code
 #'
 #' @return a useable date
 #' @export
