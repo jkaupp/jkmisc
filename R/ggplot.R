@@ -154,17 +154,15 @@ gtable_extract_grob <- function(g, pattern = "guide-box") {
 }
 
 
-date_from_term <- function(term) {
-
-  year <- as.numeric(sprintf("20%s", stringi::stri_sub(term, 2, 3)))
-
-  month <- as.numeric(stringi::stri_sub(term, 4, 4))
-
-  lubridate::make_date(year, month)
-
-}
 
 
+
+#' Five thirty-eight style formatter for Ratios
+#'
+#' @param labels
+#'
+#' @return formatted ratio labels
+#' @export
 scale_ratio_labels <- function(labels) {
 
   labels_out <- as.character(labels)
@@ -175,6 +173,12 @@ scale_ratio_labels <- function(labels) {
 
 }
 
+#' Five thirty-eight style formatter for percentages
+#'
+#' @param labels
+#'
+#' @return formatted percent labels
+#' @export
 scale_percent_labels <- function(x){
 
   x <- x*100
@@ -185,6 +189,12 @@ scale_percent_labels <- function(x){
 
 }
 
+#' Custom formatter for peoplesoft terms
+#'
+#' @param labels
+#'
+#' @return formatted year labels
+#' @export
 scale_term_Year <- function(labels) {
 
   labels_out <- sprintf("20%s", stringi::stri_sub(labels, 2, 3))

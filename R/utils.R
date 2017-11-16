@@ -96,3 +96,19 @@ fix_frozen_data <- function(x) {
 
   return(x)
 }
+
+#' Produce Date from Peoplesoft Term
+#'
+#' @param term
+#'
+#' @return a useable date
+#' @export
+date_from_term <- function(term) {
+
+  year <- as.numeric(sprintf("20%s", stringi::stri_sub(term, 2, 3)))
+
+  month <- as.numeric(stringi::stri_sub(term, 4, 4))
+
+  lubridate::make_date(year, month)
+
+}
