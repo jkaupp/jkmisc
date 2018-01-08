@@ -124,7 +124,7 @@ acadYear_from_term <- function(term) {
 
   year <- stringi::stri_sub(term, 2, 3)
 
-  if (grepl("0", year)) {
+  if (grepl("^0", year)) {
 
     start_year <- sprintf("20%s", year)
 
