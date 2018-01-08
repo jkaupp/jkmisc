@@ -112,3 +112,33 @@ date_from_term <- function(term) {
   lubridate::make_date(year, month)
 
 }
+
+
+#' Produce academic year from Peoplesoft Term
+#'
+#' @param term a peoplesoft term code
+#'
+#' @return academic year
+#' @export
+acadYear_from_term <- function(term) {
+
+  year <- stringi::stri_sub(term, 2, 3)
+
+  if (grepl("0", year)) {
+
+    start_year <- sprintf("20%s", year)
+
+    end_year <- sprintf("200%s", as.numeric(year) + 1)
+
+    paste(start_year, end_year, sep = "-")
+
+  } else  {
+
+    start_year <- sprintf("20%s", year)
+
+    end_year <- as.numeric(stringi::stri_sub(term, 2, 3)) + 1
+
+    paste(start_year, end_year, sep = "-")
+  }
+
+}
