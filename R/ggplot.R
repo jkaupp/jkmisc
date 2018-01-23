@@ -192,17 +192,15 @@ scale_percent_labels <- function(labels){
 #' Custom formatter for peoplesoft terms
 #'
 #' @param labels vector of labels
-#' @param abbr logical, abbreviate axis
 #'
 #' @return formatted year labels
 #' @export
-scale_ps_year <- function(labels, abbr = FALSE) {
+scale_ps_year <- function(labels) {
 
   labels_out <- sprintf("20%s", stringi::stri_sub(labels, 2, 3))
 
-  if (abbr) {
-    labels_out <- c(labels_out[1], stringi::stri_sub(labels_out[-1], 3, 4))
-  }
+  labels_out <- c(labels_out[1], stringi::stri_sub(labels_out[-1], 3, 4))
+
 
   return(labels_out)
 

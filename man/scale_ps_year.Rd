@@ -4,12 +4,10 @@
 \alias{scale_ps_year}
 \title{Custom formatter for peoplesoft terms}
 \usage{
-scale_ps_year(labels, abbr = FALSE)
+scale_ps_year(labels)
 }
 \arguments{
 \item{labels}{vector of labels}
-
-\item{abbr}{logical, abbreviate axis}
 }
 \value{
 formatted year labels
