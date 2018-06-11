@@ -91,6 +91,7 @@ fix_frozen_data <- function(x) {
   x <- dplyr::mutate_(x, conc1 = ~dplyr::if_else(grepl("SGS", acad_group), conc_change[conc1], dplyr::if_else(stringi::stri_sub(acad_plan, 1, 4) == "ECEN" & acad_career == "UGRD", "ENGR", conc1)))
 
   x <- dplyr::mutate_(x, acad_prog = ~dplyr::case_when(acad_prog == "BSCE" ~ "BASC",
+                                                       acad_prog %in% c("MSC", "MSCE") ~ "MASC",
                                        acad_prog == "PHDD" ~ "PHD",
                                        TRUE ~ acad_prog))
 
