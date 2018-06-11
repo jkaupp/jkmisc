@@ -20,6 +20,15 @@ ga_pal <- c("#E12493", "#067F0A", "#08829F", "#F0A305", "#9E56E5", "#845508", "#
 au_pal <- RColorBrewer::brewer.pal(5, "Set1") %>%
   stats::setNames(c("Math","NS","CS","ES","ED"))
 
+#' Semiotic
+#' @export
+semiotic_pal <- c("#ffd700",
+                   "#ffb14e",
+                   "#fa8775",
+                   "#ea5f94",
+                   "#cd34b5",
+                   "#9d02d7",
+                   "#0000ff")
 
 #' Red as highlight
 #' @export
