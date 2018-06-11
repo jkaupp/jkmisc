@@ -141,7 +141,7 @@ acadYear_from_term <- function(term) {
 
     start_year <- sprintf("20%s", year)
 
-    end_year <- sprintf("20%s", as.numeric(stringi::stri_sub(term, 2, 3)) + 1)
+    end_year <- sprintf(ifelse(stringi::stri_length(year) == 1, "200%s", "20%s"), as.numeric(year) + 1)
 
     paste(start_year, end_year, sep = "-")
   }

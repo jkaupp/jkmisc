@@ -201,7 +201,6 @@ scale_ps_year <- function(labels) {
 
   labels_out <- c(labels_out[1], stringi::stri_sub(labels_out[-1], 3, 4))
 
-
   return(labels_out)
 
 
