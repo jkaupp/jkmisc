@@ -43,6 +43,7 @@ theme_jk <- function(base_family="Oswald",
                            axis_title_family = "Oswald",
                            axis_title_size = 9,
                            axis_title_just = "mm",
+                           dark = FALSE,
                            grid = TRUE,
                            axis = FALSE,
                            ticks = FALSE) {
@@ -52,11 +53,24 @@ theme_jk <- function(base_family="Oswald",
   ret <- ret + ggplot2::theme(legend.background = ggplot2::element_blank())
   ret <- ret + ggplot2::theme(legend.key = ggplot2::element_blank())
 
+
+  if (dark == TRUE) {
+
+    ret <- ret + ggplot2::theme(plot.background = ggplot2::element_rect(fill ="#2E3440"),
+                          text = ggplot2::element_text(color = "white"))
+
+    grid_color <- "#E5E9F0"
+
+  } else {
+
+    grid_color <- "#cccccc"
+  }
+
   if (inherits(grid, "character") | grid == TRUE) {
 
-    ret <- ret + ggplot2::theme(panel.grid = ggplot2::element_line(color = "#cccccc", size = 0.10))
-    ret <- ret + ggplot2::theme(panel.grid.major = ggplot2::element_line(color = "#cccccc", size = 0.10))
-    ret <- ret + ggplot2::theme(panel.grid.minor = ggplot2::element_line(color = "#cccccc", size = 0.05))
+    ret <- ret + ggplot2::theme(panel.grid = ggplot2::element_line(color = grid_color, size = 0.10))
+    ret <- ret + ggplot2::theme(panel.grid.major = ggplot2::element_line(color = grid_color, size = 0.10))
+    ret <- ret + ggplot2::theme(panel.grid.minor = ggplot2::element_line(color = grid_color, size = 0.05))
 
     if (inherits(grid, "character")) {
       if (regexpr("X", grid)[1] < 0) ret <- ret + ggplot2::theme(panel.grid.major.x = ggplot2::element_blank())
@@ -70,22 +84,22 @@ theme_jk <- function(base_family="Oswald",
   }
 
   if (inherits(axis, "character") | axis  ==  TRUE) {
-    ret <- ret + ggplot2::theme(axis.line = ggplot2::element_line(color = "#cccccc", size = 0.15))
+    ret <- ret + ggplot2::theme(axis.line = ggplot2::element_line(color = grid_color, size = 0.15))
     if (inherits(axis, "character")) {
       axis <- tolower(axis)
       if (regexpr("x", axis)[1] < 0) {
         ret <- ret + ggplot2::theme(axis.line.x = ggplot2::element_blank())
       } else {
-        ret <- ret + ggplot2::theme(axis.line.x = ggplot2::element_line(color = "#cccccc", size = 0.15))
+        ret <- ret + ggplot2::theme(axis.line.x = ggplot2::element_line(color = grid_color, size = 0.15))
       }
       if (regexpr("y", axis)[1] < 0) {
         ret <- ret + ggplot2::theme(axis.line.y = ggplot2::element_blank())
       } else {
-        ret <- ret + ggplot2::theme(axis.line.y = ggplot2::element_line(color = "#cccccc", size = 0.15))
+        ret <- ret + ggplot2::theme(axis.line.y = ggplot2::element_line(color = grid_color, size = 0.15))
       }
     } else {
-      ret <- ret + ggplot2::theme(axis.line.x = ggplot2::element_line(color = "#cccccc", size = 0.15))
-      ret <- ret + ggplot2::theme(axis.line.y = ggplot2::element_line(color = "#cccccc", size = 0.15))
+      ret <- ret + ggplot2::theme(axis.line.x = ggplot2::element_line(color = grid_color, size = 0.15))
+      ret <- ret + ggplot2::theme(axis.line.y = ggplot2::element_line(color = grid_color, size = 0.15))
     }
   } else {
     ret <- ret + ggplot2::theme(axis.line = ggplot2::element_blank())
@@ -264,9 +278,9 @@ theme_feas <- function(base_family="Roboto Condensed Light",
 
   if (inherits(grid, "character") | grid == TRUE) {
 
-    ret <- ret + ggplot2::theme(panel.grid = ggplot2::element_line(color = "#cccccc", size = 0.10))
-    ret <- ret + ggplot2::theme(panel.grid.major = ggplot2::element_line(color = "#cccccc", size = 0.10))
-    ret <- ret + ggplot2::theme(panel.grid.minor = ggplot2::element_line(color = "#cccccc", size = 0.05))
+    ret <- ret + ggplot2::theme(panel.grid = ggplot2::element_line(color = grid_color, size = 0.10))
+    ret <- ret + ggplot2::theme(panel.grid.major = ggplot2::element_line(color = grid_color, size = 0.10))
+    ret <- ret + ggplot2::theme(panel.grid.minor = ggplot2::element_line(color = grid_color, size = 0.05))
 
     if (inherits(grid, "character")) {
       if (regexpr("X", grid)[1] < 0) ret <- ret + ggplot2::theme(panel.grid.major.x = ggplot2::element_blank())
@@ -280,22 +294,22 @@ theme_feas <- function(base_family="Roboto Condensed Light",
   }
 
   if (inherits(axis, "character") | axis  ==  TRUE) {
-    ret <- ret + ggplot2::theme(axis.line = ggplot2::element_line(color = "#cccccc", size = 0.15))
+    ret <- ret + ggplot2::theme(axis.line = ggplot2::element_line(color = grid_color, size = 0.15))
     if (inherits(axis, "character")) {
       axis <- tolower(axis)
       if (regexpr("x", axis)[1] < 0) {
         ret <- ret + ggplot2::theme(axis.line.x = ggplot2::element_blank())
       } else {
-        ret <- ret + ggplot2::theme(axis.line.x = ggplot2::element_line(color = "#cccccc", size = 0.15))
+        ret <- ret + ggplot2::theme(axis.line.x = ggplot2::element_line(color = grid_color, size = 0.15))
       }
       if (regexpr("y", axis)[1] < 0) {
         ret <- ret + ggplot2::theme(axis.line.y = ggplot2::element_blank())
       } else {
-        ret <- ret + ggplot2::theme(axis.line.y = ggplot2::element_line(color = "#cccccc", size = 0.15))
+        ret <- ret + ggplot2::theme(axis.line.y = ggplot2::element_line(color = grid_color, size = 0.15))
       }
     } else {
-      ret <- ret + ggplot2::theme(axis.line.x = ggplot2::element_line(color = "#cccccc", size = 0.15))
-      ret <- ret + ggplot2::theme(axis.line.y = ggplot2::element_line(color = "#cccccc", size = 0.15))
+      ret <- ret + ggplot2::theme(axis.line.x = ggplot2::element_line(color = grid_color, size = 0.15))
+      ret <- ret + ggplot2::theme(axis.line.y = ggplot2::element_line(color = grid_color, size = 0.15))
     }
   } else {
     ret <- ret + ggplot2::theme(axis.line = ggplot2::element_blank())
