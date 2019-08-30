@@ -15,29 +15,6 @@ grid_draw <- function(x) {
   grid::grid.draw(x)
 
 }
-#' prog_from_plan
-#'
-#' @param x plan string
-#'
-#' @return prog
-#' @export
-prog_from_plan <- function(x) {
-
-  if (grepl("CHEE", x)) {
-    "CHEE"
-  } else if (grepl("MECH|MEME", x)) {
-    "MECH"
-  } else if (grepl("ECEN|ELEC|CMPE", x)) {
-    "ECE"
-  } else if (grepl("MINE", x)) {
-    "MINE"
-  } else if (grepl("CIVL", x)) {
-    "CIVL"
-  } else {
-    x
-  }
-
-}
 
 #' wrapper for Not In.  Finds values that don't match to a provided vector
 #'
@@ -49,53 +26,6 @@ prog_from_plan <- function(x) {
 
   match(x, table, nomatch = 0L) == 0L
 
-}
-
-
-#' conveinence function to quickly filter all plans/concentrations under engineering
-#' currently used only for undergrad
-#'
-#' @param x academic plan or concetration
-#' @param core TRUE/FALSE
-#'
-#' @export
-inFEAS <- function(x, core = FALSE) {
-
-  if (core) {
-    table <- c("ENGR", "ECEN", "ELEC", "CMPE", "CIVL", "CHEE", "ENCH", "MINE", "MECH", "MEME")
-  } else {
-    table <- c("ENGR", "ECEN", "ELEC", "CMPE", "CIVL", "CHEE", "ENCH", "MINE", "MECH", "MEME", "ENPH", "GEOE", "MTHE", "PEPA", "GSGE")
-  }
-
-  grepl(paste0(table, collapse = "|"), x)
-
-
-}
-
-
-#' Fix peoplesoft frozen data, accounting for degree, program and plan changes
-#'
-#' @param x input PS dataframe
-#'
-#' @return x the cleaned dataframe
-#' @export
-fix_frozen_data <- function(x) {
-
-  conc_change <- stats::setNames(c("ECEN", "PEPA", "MEME", "MTHE", "GSGE",
-                            "MINE", "CHEE", "CIVL", "DM-R", "GSGE", "MEME", "UN-R", "ECEN",
-                            "PEPA", "CHEE", "CHEE", "GSGE"),
-                          c("ECEN", "PEPA", "MEME", "MTHE", "GSGE",
-                            "MINE", "CHEE", "CIVL", "DM-R", "GEOE", "MECH", "UN-R", "ELEC",
-                            "ENPH", "ENCH", "CHEM", "GENG"))
-
-  x <- dplyr::mutate_(x, conc1 = ~dplyr::if_else(grepl("SGS", acad_group), conc_change[conc1], dplyr::if_else(stringi::stri_sub(acad_plan, 1, 4) == "ECEN" & acad_career == "UGRD", "ENGR", conc1)))
-
-  x <- dplyr::mutate_(x, acad_prog = ~dplyr::case_when(acad_prog == "BSCE" ~ "BASC",
-                                                       acad_prog %in% c("MSC", "MSCE") ~ "MASC",
-                                       acad_prog == "PHDD" ~ "PHD",
-                                       TRUE ~ acad_prog))
-
-  return(x)
 }
 
 #' Produce Date from Peoplesoft Term
@@ -146,5 +76,51 @@ acadYear_from_term <- function(term) {
 
     paste(start_year, end_year, sep = "-")
   }
+
+}
+
+
+str_break <- function (html_string, width = 80, indent = 0, exdent = 0) {
+
+  tags <- stringr::str_extract_all(html_string, "<.*?>") %>%
+    purrr::flatten_chr()
+
+  index <- sprintf("tag_%s", seq_along(tags))
+
+  string <- stringr::str_replace_all(html_string, set_names(index, tags))
+
+  if (width <= 0)
+    width <- 1
+
+  out <- stringi::stri_wrap(string, width = width, indent = indent,
+                            exdent = exdent, simplify = FALSE)
+
+  broken <- vapply(out, str_c, collapse = "<br>", character(1))
+
+  stringr::str_replace_all(broken, set_names(tags, index))
+
+}
+
+highlight_text <- function(text, col = "#000000", style = "") {
+
+  out <- switch(style,
+                "i" = glue::glue("*{text}*"),
+                "b" = glue::glue("**{text}**"),
+                "ib" = glue::glue("***{text}***"),
+                "bi" = glue::glue("***{text}***"),
+                 text)
+
+  if (style != "") {
+
+    tags$span(style = glue::glue("color:{col}"), out)
+
+    } else {
+
+   out
+
+  }
+
+
+
 
 }

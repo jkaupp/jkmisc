@@ -25,6 +25,7 @@
 #'        \code{X}, \code{x}, \code{Y}, \code{y})
 #' @param axis axis \code{TRUE}, \code{FALSE}, [\code{xy}]
 #' @param ticks ticks
+#' @param markdown enabled ggtext markdown styling  \code{TRUE}, \code{FALSE}
 #' @export
 
 theme_jk <- function(base_family="Oswald",
@@ -34,10 +35,10 @@ theme_jk <- function(base_family="Oswald",
                            plot_title_family = "Oswald",
                            plot_title_size = 18,
                            plot_title_margin = 10,
-                           subtitle_family = "Scope One",
+                           subtitle_family = "Lora",
                            subtitle_size = 12,
                            subtitle_margin = 15,
-                           caption_family = "Scope One",
+                           caption_family = "Lora",
                            caption_size = 9,
                            caption_margin = 10,
                            axis_title_family = "Oswald",
@@ -46,7 +47,8 @@ theme_jk <- function(base_family="Oswald",
                            dark = FALSE,
                            grid = TRUE,
                            axis = FALSE,
-                           ticks = FALSE) {
+                           ticks = FALSE,
+                           markdown = FALSE) {
 
   ret <- ggplot2::theme_minimal(base_family = base_family, base_size = base_size)
 
@@ -57,7 +59,8 @@ theme_jk <- function(base_family="Oswald",
   if (dark == TRUE) {
 
     ret <- ret + ggplot2::theme(plot.background = ggplot2::element_rect(fill ="#2E3440"),
-                          text = ggplot2::element_text(color = "white"))
+                                text = ggplot2::element_text(color = "white"),
+                                strip.text = ggplot2::element_text(color = "white"))
 
     grid_color <- "#E5E9F0"
     tick_color = "#E5E9F0"
@@ -126,9 +129,33 @@ theme_jk <- function(base_family="Oswald",
   ret <- ret + ggplot2::theme(axis.title.x = ggplot2::element_text(hjust = xj, size = axis_title_size, family = axis_title_family))
   ret <- ret + ggplot2::theme(axis.title.y = ggplot2::element_text(hjust = yj, size = axis_title_size, family = axis_title_family))
   ret <- ret + ggplot2::theme(strip.text = ggplot2::element_text(hjust = 0, size = strip_text_size, family = strip_text_family))
+
+  if(!markdown) {
+
+    ret <- ret + ggplot2::theme(axis.text.x = ggplot2::element_text(color = tick_color, margin = ggplot2::margin(t = 0.8 * base_size/2)))
+    ret <- ret + ggplot2::theme(axis.text.y = ggplot2::element_text(color = tick_color, margin = ggplot2::margin(r = 0.8 * base_size/2))) + ggplot2::theme(axis.title = ggplot2::element_text(size = axis_title_size, family = axis_title_family))
+    ret <- ret + ggplot2::theme(axis.title.x = ggplot2::element_text(hjust = xj, size = axis_title_size, family = axis_title_family))
+    ret <- ret + ggplot2::theme(axis.title.y = ggplot2::element_text(hjust = yj, size = axis_title_size, family = axis_title_family))
+    ret <- ret + ggplot2::theme(strip.text = ggplot2::element_text(hjust = 0, size = strip_text_size, family = strip_text_family))
+
   ret <- ret + ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0, size = plot_title_size, margin = ggplot2::margin(b = plot_title_margin), family = plot_title_family))
   ret <- ret + ggplot2::theme(plot.subtitle = ggplot2::element_text(hjust = 0, size = subtitle_size, margin = ggplot2::margin(b = subtitle_margin), family = subtitle_family))
   ret <- ret + ggplot2::theme(plot.caption = ggplot2::element_text(hjust = 1, size = caption_size, margin = ggplot2::margin(t = caption_margin), family = caption_family))
+
+  } else {
+
+    ret <- ret + ggplot2::theme(axis.text.x = ggtext::element_markdown(color = tick_color, margin = ggplot2::margin(t = 0.8 * base_size/2)))
+    ret <- ret + ggplot2::theme(axis.text.y = ggtext::element_markdown(color = tick_color, margin = ggplot2::margin(r = 0.8 * base_size/2))) + ggplot2::theme(axis.title = ggtext::element_markdown(size = axis_title_size, family = axis_title_family))
+    ret <- ret + ggplot2::theme(axis.title.x = ggtext::element_markdown(hjust = xj, size = axis_title_size, family = axis_title_family))
+    ret <- ret + ggplot2::theme(axis.title.y = ggtext::element_markdown(hjust = yj, size = axis_title_size, family = axis_title_family))
+    ret <- ret + ggplot2::theme(strip.text = ggtext::element_markdown(hjust = 0, size = strip_text_size, family = strip_text_family))
+
+    ret <- ret + ggplot2::theme(plot.title = ggtext::element_markdown(hjust = 0, size = plot_title_size, margin = ggplot2::margin(b = plot_title_margin), family = plot_title_family))
+    ret <- ret + ggplot2::theme(plot.subtitle = ggtext::element_markdown(hjust = 0, size = subtitle_size, margin = ggplot2::margin(b = subtitle_margin), family = subtitle_family))
+    ret <- ret + ggplot2::theme(plot.caption = ggtext::element_markdown(hjust = 1, size = caption_size, margin = ggplot2::margin(t = caption_margin), family = caption_family))
+
+  }
+
   ret <- ret + ggplot2::theme(plot.margin = ggplot2::margin(base_size/2, base_size/2, base_size/2, base_size/2))
 
   ret
@@ -224,7 +251,7 @@ scale_ps_year <- function(labels) {
 
 
 
-#' Queen's FEAS theme heavy credits for influencing the theme function
+#' My ggplot2 theme heavy credits for influencing the theme function
 #' go to @@hrbrmstr (Bob Rudis)
 #'
 #' It requires installing Oswald fonts unless you change the font parameters
@@ -253,30 +280,47 @@ scale_ps_year <- function(labels) {
 #' @param ticks ticks
 #' @export
 
-theme_feas <- function(base_family="Roboto Condensed Light",
-                       base_size = 16,
-                       strip_text_family = base_family,
-                       strip_text_size = 12,
-                       plot_title_family = "Roboto Condensed Light",
-                       plot_title_size = 18,
-                       plot_title_margin = 10,
-                       subtitle_family = "Raleway ExtraLight",
-                       subtitle_size = 12,
-                       subtitle_margin = 15,
-                       caption_family = "Raleway ExtraLight",
-                       caption_size = 9,
-                       caption_margin = 10,
-                       axis_title_family = "Roboto Condensed Light",
-                       axis_title_size = 9,
-                       axis_title_just = "mm",
-                       grid = TRUE,
-                       axis = FALSE,
-                       ticks = FALSE) {
+theme_irp <- function(base_family="Roboto Condensed",
+                     base_size = 11,
+                     strip_text_family = "Futura Medium",
+                     strip_text_size = 12,
+                     plot_title_family = "Futura Medium",
+                     plot_title_size = 18,
+                     plot_title_margin = 10,
+                     subtitle_family = "Roboto Condensed",
+                     subtitle_size = 12,
+                     subtitle_margin = 15,
+                     caption_family = "Roboto Condensed",
+                     caption_size = 9,
+                     caption_margin = 10,
+                     axis_title_family = "Roboto Condensed",
+                     axis_title_size = 9,
+                     axis_title_just = "mm",
+                     dark = FALSE,
+                     grid = TRUE,
+                     axis = FALSE,
+                     ticks = FALSE) {
 
   ret <- ggplot2::theme_minimal(base_family = base_family, base_size = base_size)
 
   ret <- ret + ggplot2::theme(legend.background = ggplot2::element_blank())
   ret <- ret + ggplot2::theme(legend.key = ggplot2::element_blank())
+
+
+  if (dark == TRUE) {
+
+    ret <- ret + ggplot2::theme(plot.background = ggplot2::element_rect(fill ="#2E3440"),
+                                text = ggplot2::element_text(color = "white"),
+                                strip.text = ggplot2::element_text(color = "white"))
+
+    grid_color <- "#E5E9F0"
+    tick_color = "#E5E9F0"
+
+  } else {
+
+    grid_color <- "#cccccc"
+    tick_color <- "black"
+  }
 
   if (inherits(grid, "character") | grid == TRUE) {
 
@@ -317,34 +361,22 @@ theme_feas <- function(base_family="Roboto Condensed Light",
     ret <- ret + ggplot2::theme(axis.line = ggplot2::element_blank())
   }
 
-  if (inherits(ticks, "character") | ticks == TRUE) {
+  if (!ticks) {
+    ret <- ret + ggplot2::theme(axis.ticks  =  ggplot2::element_blank())
+    ret <- ret + ggplot2::theme(axis.ticks.x  =  ggplot2::element_blank())
+    ret <- ret + ggplot2::theme(axis.ticks.y  =  ggplot2::element_blank())
+  } else {
     ret <- ret + ggplot2::theme(axis.ticks  =  ggplot2::element_line(size = 0.15))
     ret <- ret + ggplot2::theme(axis.ticks.x  =  ggplot2::element_line(size = 0.15))
     ret <- ret + ggplot2::theme(axis.ticks.y  =  ggplot2::element_line(size = 0.15))
     ret <- ret + ggplot2::theme(axis.ticks.length  =  grid::unit(5, "pt"))
-
-    if (inherits(ticks, "character")) {
-      ticks <- tolower(ticks)
-      if (regexpr("x", ticks)[1] < 0) {
-        ret <- ret + ggplot2::theme(axis.ticks.x  =  ggplot2::element_blank())
-      }
-
-      if (regexpr("y", ticks)[1] < 0) {
-        ret <- ret + ggplot2::theme(axis.ticks.y  =  ggplot2::element_blank())
-      }
-    }
-  } else {
-    ret <- ret + ggplot2::theme(axis.ticks  =  ggplot2::element_blank())
-    ret <- ret + ggplot2::theme(axis.ticks.x  =  ggplot2::element_blank())
-    ret <- ret + ggplot2::theme(axis.ticks.y  =  ggplot2::element_blank())
-
   }
 
   xj <- switch(tolower(substr(axis_title_just, 1, 1)), b = 0, l = 0, m = 0.5, c = 0.5, r = 1, t = 1)
   yj <- switch(tolower(substr(axis_title_just, 2, 2)), b = 0, l = 0, m = 0.5, c = 0.5, r = 1, t = 1)
 
-  ret <- ret + ggplot2::theme(axis.text.x = ggplot2::element_text(margin = ggplot2::margin(t = 0.8 * base_size/2)))
-  ret <- ret + ggplot2::theme(axis.text.y = ggplot2::element_text(margin = ggplot2::margin(r = 0.8 * base_size/2))) + ggplot2::theme(axis.title = ggplot2::element_text(size = axis_title_size, family = axis_title_family))
+  ret <- ret + ggplot2::theme(axis.text.x = ggplot2::element_text(color = tick_color, margin = ggplot2::margin(t = 0.8 * base_size/2)))
+  ret <- ret + ggplot2::theme(axis.text.y = ggplot2::element_text(color = tick_color, margin = ggplot2::margin(r = 0.8 * base_size/2))) + ggplot2::theme(axis.title = ggplot2::element_text(size = axis_title_size, family = axis_title_family))
   ret <- ret + ggplot2::theme(axis.title.x = ggplot2::element_text(hjust = xj, size = axis_title_size, family = axis_title_family))
   ret <- ret + ggplot2::theme(axis.title.y = ggplot2::element_text(hjust = yj, size = axis_title_size, family = axis_title_family))
   ret <- ret + ggplot2::theme(strip.text = ggplot2::element_text(hjust = 0, size = strip_text_size, family = strip_text_family))
@@ -356,4 +388,3 @@ theme_feas <- function(base_family="Roboto Condensed Light",
   ret
 
 }
-

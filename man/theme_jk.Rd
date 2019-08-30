@@ -8,11 +8,12 @@ go to @hrbrmstr (Bob Rudis)}
 theme_jk(base_family = "Oswald", base_size = 11,
   strip_text_family = base_family, strip_text_size = 12,
   plot_title_family = "Oswald", plot_title_size = 18,
-  plot_title_margin = 10, subtitle_family = "Scope One",
-  subtitle_size = 12, subtitle_margin = 15, caption_family = "Scope One",
-  caption_size = 9, caption_margin = 10, axis_title_family = "Oswald",
-  axis_title_size = 9, axis_title_just = "mm", grid = TRUE,
-  axis = FALSE, ticks = FALSE)
+  plot_title_margin = 10, subtitle_family = "Lora",
+  subtitle_size = 12, subtitle_margin = 15, caption_family = "Lora",
+  caption_size = 9, caption_margin = 10,
+  axis_title_family = "Oswald", axis_title_size = 9,
+  axis_title_just = "mm", dark = FALSE, grid = TRUE, axis = FALSE,
+  ticks = FALSE, markdown = FALSE)
 }
 \arguments{
 \item{base_family}{base font family}
@@ -53,6 +54,8 @@ theme_jk(base_family = "Oswald", base_size = 11,
 \item{axis}{axis \code{TRUE}, \code{FALSE}, [\code{xy}]}
 
 \item{ticks}{ticks}
+
+\item{markdown}{enabled ggtext markdown styling  \code{TRUE}, \code{FALSE}}
 }
 \description{
 It requires installing Oswald fonts unless you change the font parameters
