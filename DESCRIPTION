@@ -16,7 +16,8 @@ Imports:
     dplyr,
     lubridate,
     magrittr,
-    ggtext (>= 0.1.0)
+    ggtext (>= 0.1.0),
+    stringr
 RoxygenNote: 6.1.1
-Remotes:  
+Remotes: 
     clauswilke/ggtext

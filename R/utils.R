@@ -80,7 +80,26 @@ acadYear_from_term <- function(term) {
 }
 
 
-str_break <- function (html_string, width = 80, indent = 0, exdent = 0) {
+#' str_break
+#'
+#' @param string string to break
+#' @param width  width to break at
+#' @param indent left indent
+#' @param exdent right indent
+#'
+#' @return string with line braaks at specified width
+#' @export
+#'
+str_break <- function (string, width = 80, indent = 0, exdent = 0)
+{
+  if (width <= 0)
+    width <- 1
+  out <- stringi::stri_wrap(string, width = width, indent = indent,
+                   exdent = exdent, simplify = FALSE)
+  vapply(out, stringr::str_c, collapse = "\n", character(1))
+}
+
+str_break_wrap <- function (html_string, width = 80, indent = 0, exdent = 0) {
 
   tags <- stringr::str_extract_all(html_string, "<.*?>") %>%
     purrr::flatten_chr()
@@ -101,7 +120,16 @@ str_break <- function (html_string, width = 80, indent = 0, exdent = 0) {
 
 }
 
-highlight_text <- function(text, col = "#000000", style = "") {
+#' Format text with markdown and span elements for use with ggtext
+#' element_markdown or geom_richtext
+#'
+#' @param text text to highight
+#' @param colour hex code of color to highlight
+#' @param style \strong{b} for bold, \emph{i} for italics or a two letter combination \strong{\emph{bi}} for both
+#'
+#' @return formatted string
+#' @export
+highlight_text <- function(text, colour = "#000000", style = "") {
 
   out <- switch(style,
                 "i" = glue::glue("*{text}*"),
@@ -112,7 +140,7 @@ highlight_text <- function(text, col = "#000000", style = "") {
 
   if (style != "") {
 
-    tags$span(style = glue::glue("color:{col}"), out)
+    tags$span(style = glue::glue("color:{colour}"), out)
 
     } else {
 
