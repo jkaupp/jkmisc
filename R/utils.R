@@ -140,15 +140,13 @@ highlight_text <- function(text, colour = "#000000", style = "") {
 
   if (style != "") {
 
-    tags$span(style = glue::glue("color:{colour}"), out)
+    as.character(glue::glue("<span style = 'color:{colour}'>{out}</span>"))
 
     } else {
 
-   out
+   as.character(out)
 
   }
-
-
 
 
 }
