@@ -129,7 +129,7 @@ str_break_wrap <- function (html_string, width = 80, indent = 0, exdent = 0) {
 #'
 #' @return formatted string
 #' @export
-highlight_text <- function(text, colour = "#000000", style = "") {
+highlight_text <- function(text, colour = "#000000", style = "", size = 12) {
 
   out <- switch(style,
                 "i" = glue::glue("*{text}*"),
@@ -138,15 +138,6 @@ highlight_text <- function(text, colour = "#000000", style = "") {
                 "bi" = glue::glue("***{text}***"),
                  text)
 
-  if (style != "") {
-
-    as.character(glue::glue("<span style = 'color:{colour}'>{out}</span>"))
-
-    } else {
-
-   as.character(out)
-
-  }
-
+  as.character(glue::glue("<span style = 'color:{colour}; font-size:{size}px'>{out}</span>"))
 
 }
