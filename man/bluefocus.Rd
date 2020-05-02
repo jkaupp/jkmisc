@@ -4,7 +4,9 @@
 \name{bluefocus}
 \alias{bluefocus}
 \title{Blue as highlight}
-\format{An object of class \code{character} of length 8.}
+\format{
+An object of class \code{character} of length 8.
+}
 \usage{
 bluefocus
 }

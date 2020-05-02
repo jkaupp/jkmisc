@@ -4,7 +4,9 @@
 \name{tol9qualitative}
 \alias{tol9qualitative}
 \title{Qualitative color schemes by Paul Tol}
-\format{An object of class \code{character} of length 9.}
+\format{
+An object of class \code{character} of length 9.
+}
 \usage{
 tol9qualitative
 }

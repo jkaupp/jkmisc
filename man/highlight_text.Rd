@@ -5,7 +5,7 @@
 \title{Format text with markdown and span elements for use with ggtext
 element_markdown or geom_richtext}
 \usage{
-highlight_text(text, colour = "#000000", style = "")
+highlight_text(text, colour = "#000000", style = "", size = 16)
 }
 \arguments{
 \item{text}{text to highight}
@@ -13,6 +13,8 @@ highlight_text(text, colour = "#000000", style = "")
 \item{colour}{hex code of color to highlight}
 
 \item{style}{\strong{b} for bold, \emph{i} for italics or a two letter combination \strong{\emph{bi}} for both}
+
+\item{size}{text size in px, defaults to 16}
 }
 \value{
 formatted string

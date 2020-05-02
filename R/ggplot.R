@@ -24,8 +24,10 @@
 #' @param grid panel grid (\code{TRUE}, \code{FALSE}, or a combination of
 #'        \code{X}, \code{x}, \code{Y}, \code{y})
 #' @param axis axis \code{TRUE}, \code{FALSE}, [\code{xy}]
-#' @param ticks ticks
+#' @param ticks ticks \code{TRUE}, \code{FALSE}
+#' @param dark dark mode \code{TRUE}, \code{FALSE}
 #' @param markdown enabled ggtext markdown styling  \code{TRUE}, \code{FALSE}
+#'
 #' @export
 
 theme_jk <- function(base_family="Oswald",
@@ -232,20 +234,19 @@ scale_percent_labels <- function(labels){
 
 }
 
-#' Custom formatter for peoplesoft terms
+#' Five thirty-eight style formatter for currency
 #'
 #' @param labels vector of labels
 #'
-#' @return formatted year labels
+#' @return formatted percent labels
 #' @export
-scale_ps_year <- function(labels) {
+scale_dollar_labels <- function(labels){
 
-  labels_out <- sprintf("20%s", stringi::stri_sub(labels, 2, 3))
+  labels <- labels
 
-  labels_out <- c(labels_out[1], stringi::stri_sub(labels_out[-1], 3, 4))
+  labels[length(labels)] <- paste0(labels[length(labels)], "$")
 
-  return(labels_out)
-
+  return(labels)
 
 }
 
@@ -277,7 +278,9 @@ scale_ps_year <- function(labels) {
 #' @param grid panel grid (\code{TRUE}, \code{FALSE}, or a combination of
 #'        \code{X}, \code{x}, \code{Y}, \code{y})
 #' @param axis axis \code{TRUE}, \code{FALSE}, [\code{xy}]
-#' @param ticks ticks
+#' @param dark axis \code{TRUE}, \code{FALSE},
+#' @param ticks ticks axis \code{TRUE}, \code{FALSE}
+#'
 #' @export
 
 theme_irp <- function(base_family="Roboto Condensed",

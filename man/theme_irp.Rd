@@ -5,15 +5,28 @@
 \title{My ggplot2 theme heavy credits for influencing the theme function
 go to @hrbrmstr (Bob Rudis)}
 \usage{
-theme_irp(base_family = "Roboto Condensed", base_size = 11,
-  strip_text_family = "Futura Medium", strip_text_size = 12,
-  plot_title_family = "Futura Medium", plot_title_size = 18,
-  plot_title_margin = 10, subtitle_family = "Roboto Condensed",
-  subtitle_size = 12, subtitle_margin = 15,
-  caption_family = "Roboto Condensed", caption_size = 9,
-  caption_margin = 10, axis_title_family = "Roboto Condensed",
-  axis_title_size = 9, axis_title_just = "mm", dark = FALSE,
-  grid = TRUE, axis = FALSE, ticks = FALSE)
+theme_irp(
+  base_family = "Roboto Condensed",
+  base_size = 11,
+  strip_text_family = "Futura Medium",
+  strip_text_size = 12,
+  plot_title_family = "Futura Medium",
+  plot_title_size = 18,
+  plot_title_margin = 10,
+  subtitle_family = "Roboto Condensed",
+  subtitle_size = 12,
+  subtitle_margin = 15,
+  caption_family = "Roboto Condensed",
+  caption_size = 9,
+  caption_margin = 10,
+  axis_title_family = "Roboto Condensed",
+  axis_title_size = 9,
+  axis_title_just = "mm",
+  dark = FALSE,
+  grid = TRUE,
+  axis = FALSE,
+  ticks = FALSE
+)
 }
 \arguments{
 \item{base_family}{base font family}
@@ -48,12 +61,14 @@ theme_irp(base_family = "Roboto Condensed", base_size = 11,
 
 \item{axis_title_just}{axis title font justification \code{blmcrt}}
 
+\item{dark}{axis \code{TRUE}, \code{FALSE},}
+
 \item{grid}{panel grid (\code{TRUE}, \code{FALSE}, or a combination of
 \code{X}, \code{x}, \code{Y}, \code{y})}
 
 \item{axis}{axis \code{TRUE}, \code{FALSE}, [\code{xy}]}
 
-\item{ticks}{ticks}
+\item{ticks}{ticks axis \code{TRUE}, \code{FALSE}}
 }
 \description{
 It requires installing Oswald fonts unless you change the font parameters

@@ -11,13 +11,9 @@ Author: Jake Kaupp
 Maintainer: Jake Kaupp <jkaupp@gmail.com>
 Imports: 
     ggplot2,
-    purrr,
     stringi,
-    dplyr,
-    lubridate,
-    magrittr,
     ggtext (>= 0.1.0),
-    stringr
-RoxygenNote: 6.1.1
+    glue
+RoxygenNote: 7.1.0
 Remotes: 
     clauswilke/ggtext

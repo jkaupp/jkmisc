@@ -4,7 +4,9 @@
 \name{redfocus}
 \alias{redfocus}
 \title{Red as highlight}
-\format{An object of class \code{character} of length 8.}
+\format{
+An object of class \code{character} of length 8.
+}
 \usage{
 redfocus
 }

@@ -4,7 +4,9 @@
 \name{semiotic_pal}
 \alias{semiotic_pal}
 \title{Semiotic}
-\format{An object of class \code{character} of length 7.}
+\format{
+An object of class \code{character} of length 7.
+}
 \usage{
 semiotic_pal
 }

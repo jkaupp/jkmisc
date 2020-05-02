@@ -1,24 +1,6 @@
-#' Harris Mountain Form color palette
-#' @export
-mountain_pal <- c("#184860", "#486078","#d8d8d8", "#484860", "#181830")
-
-#' Lumina color palette
-#' @export
-lumina_pal <- c("#EDDAEB","#AD8CAE","#4F93B8","#306489","#222B4C")
-
 #' Queen's tri-color palette
 #' @export
 tricolour_pal <- c("#9d1939", "#eebd31", "#11335d")
-
-#' Graduate Attribute Colors
-#' @export
-ga_pal <- c("#E12493", "#067F0A", "#08829F", "#F0A305", "#9E56E5", "#845508", "#B21C42", "#214A1E", "#B8AACC", "#97B438", "#B988EF", "#12B2B3") %>%
-  stats::setNames(c("KB","PA","IN","DE","ET","TW","CO","PR","IM","EE","EC","LL"))
-
-#' AU Colors
-#' @export
-au_pal <- RColorBrewer::brewer.pal(5, "Set1") %>%
-  stats::setNames(c("Math","NS","CS","ES","ED"))
 
 #' Semiotic
 #' @export

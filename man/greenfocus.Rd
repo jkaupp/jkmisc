@@ -4,7 +4,9 @@
 \name{greenfocus}
 \alias{greenfocus}
 \title{Green as highlight}
-\format{An object of class \code{character} of length 8.}
+\format{
+An object of class \code{character} of length 8.
+}
 \usage{
 greenfocus
 }

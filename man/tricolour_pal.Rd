@@ -4,7 +4,9 @@
 \name{tricolour_pal}
 \alias{tricolour_pal}
 \title{Queen's tri-color palette}
-\format{An object of class \code{character} of length 3.}
+\format{
+An object of class \code{character} of length 3.
+}
 \usage{
 tricolour_pal
 }
