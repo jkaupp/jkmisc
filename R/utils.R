@@ -36,7 +36,7 @@ grid_draw <- function(x) {
 #' @return string with html line breaks <br> at specified width
 #' @export
 #'
-str_break_wrap <- function (html_string, width = 80, indent = 0, exdent = 0) {
+str_break <- function (html_string, width = 80, indent = 0, exdent = 0) {
 
   tags <- unlist(stringi::stri_extract_all_regex(html_string, "<.*?>"))
 
