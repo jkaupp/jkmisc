@@ -40,9 +40,13 @@ str_break_wrap <- function (html_string, width = 80, indent = 0, exdent = 0) {
 
   tags <- unlist(stringi::stri_extract_all_regex(html_string, "<.*?>"))
 
+  full_tags <- unlist(stringi::stri_extract_all_regex(html_string, "<.*>"))
+
   style <- unlist(stringi::stri_extract_all_regex(html_string, "\\*+"))
 
   plain_string <- stringi::stri_replace_all_fixed(html_string, c(tags, style), "", vectorize_all = FALSE)
+
+  highlight <- stringi::stri_replace_all_fixed(full_tags, c(tags, style), "", vectorize_all = FALSE)
 
   if (width <= 0)
     width <- 1
@@ -52,7 +56,7 @@ str_break_wrap <- function (html_string, width = 80, indent = 0, exdent = 0) {
 
   broken <- vapply(out, stringi::stri_c, collapse = "<br>", character(1))
 
-  stringi::stri_replace_all_fixed(html_string, plain_string, broken)
+  stringi::stri_replace_all_fixed(broken, highlight, full_tags)
 
 }
 
