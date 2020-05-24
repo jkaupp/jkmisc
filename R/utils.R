@@ -26,7 +26,7 @@ grid_draw <- function(x) {
 }
 
 
-#' str_break_wrap
+#' str_break
 #'
 #' @param html_string string of html to break
 #' @param width  width to break at
@@ -40,9 +40,7 @@ str_break <- function (html_string, width = 80, indent = 0, exdent = 0) {
 
   tags <- unlist(stringi::stri_extract_all_regex(html_string, "<.*?>"))
 
-  full_tags <- unlist(stringi::stri_extract_all_regex(html_string, "<.*>"))
-
-  style <- unlist(stringi::stri_extract_all_regex(html_string, "\\*+"))
+  full_tags <- unlist(stringi::stri_extract_all_regex(html_string, "<span[^>]*>[^>]*<\\/span>"))
 
   plain_string <- stringi::stri_replace_all_fixed(html_string, c(tags, style), "", vectorize_all = FALSE)
 
@@ -56,7 +54,7 @@ str_break <- function (html_string, width = 80, indent = 0, exdent = 0) {
 
   broken <- vapply(out, stringi::stri_c, collapse = "<br>", character(1))
 
-  stringi::stri_replace_all_fixed(broken, highlight, full_tags)
+  stringi::stri_replace_all_fixed(broken, highlight, full_tags, vectorize_all = FALSE)
 
 }
 
