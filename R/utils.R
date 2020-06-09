@@ -80,3 +80,17 @@ highlight_text <- function(text, colour = "#000000", style = "", size = 16) {
   as.character(glue::glue("<span style = 'color:{colour}; font-size:{size}px;'>{out}</span>"))
 
 }
+
+
+#' Make word into W O R D
+#'
+#' @param text word to space and capitalize
+#'
+#' @return T E X T
+#' @export
+spaced_title <- function(text) {
+
+  gsub("(?<=.)(?!$)", " ", toupper(text), perl = TRUE)
+
+
+}
