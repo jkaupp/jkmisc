@@ -42,9 +42,9 @@ str_break <- function (html_string, width = 80, indent = 0, exdent = 0) {
 
   full_tags <- unlist(stringi::stri_extract_all_regex(html_string, "<span[^>]*>[^>]*<\\/span>"))
 
-  plain_string <- stringi::stri_replace_all_fixed(html_string, c(tags, style), "", vectorize_all = FALSE)
+  plain_string <- stringi::stri_replace_all_fixed(html_string, tags, "", vectorize_all = FALSE)
 
-  highlight <- stringi::stri_replace_all_fixed(full_tags, c(tags, style), "", vectorize_all = FALSE)
+  highlight <- stringi::stri_replace_all_fixed(full_tags, tags, "", vectorize_all = FALSE)
 
   if (width <= 0)
     width <- 1

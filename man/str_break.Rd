@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{str_break}
 \alias{str_break}
-\title{str_break_wrap}
+\title{str_break}
 \usage{
 str_break(html_string, width = 80, indent = 0, exdent = 0)
 }
@@ -19,5 +19,5 @@ str_break(html_string, width = 80, indent = 0, exdent = 0)
 string with html line breaks <br> at specified width
 }
 \description{
-str_break_wrap
+str_break
 }
