@@ -20,5 +20,4 @@ tt_dir <- function(year = lubridate::year(Sys.Date()), week = lubridate::isoweek
   } else {
     cat(crayon::yellow("Directory Already Exists"))
   }
-
 }
