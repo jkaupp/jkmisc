@@ -13,7 +13,9 @@ Imports:
     ggplot2,
     stringi,
     ggtext (>= 0.1.0),
-    glue
+    glue,
+    crayon,
+    fs
 RoxygenNote: 7.1.0
 Remotes: 
     clauswilke/ggtext
