@@ -1,4 +1,10 @@
 
+#' Create a new TidyTuesday directory
+#'
+#' @param year 4 digit year
+#' @param week numeric week
+#'
+#' @export
 tt_dir <- function(year = lubridate::year(Sys.Date()), week = lubridate::isoweek(Sys.Date()) + 1) {
 
   base_tt <- "/Users/jake/Projects/R/tidytuesdays"
