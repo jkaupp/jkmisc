@@ -16,6 +16,6 @@ Imports:
     glue,
     crayon,
     fs
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Remotes: 
     clauswilke/ggtext
