@@ -21,7 +21,35 @@ tt_dir <- function(year = lubridate::year(Sys.Date()), week = lubridate::isoweek
 
     invisible(file.create(fs::path(base_tt, year, week, "R", "analysis.R")))
 
-    cat(crayon::cyan("Created TidyTuesday Directory and analysis.R for %s, %s", year, week))
+    cat(crayon::cyan(sprintf("Created TidyTuesday Directory and analysis.R for %s, %s", year, week)))
+
+  } else {
+    cat(crayon::yellow("Directory Already Exists"))
+  }
+}
+
+#' Create a new 30DCC directory
+#'
+#' @param day 2 digit day
+#'
+#' @export
+tdcc_dir <- function(day = lubridate::day(Sys.Date())) {
+
+  base <- "/Users/jake/Projects/R/30dayChartChallenge"
+
+  day <- sprintf("day%s", day)
+
+  if (!dir.exists(fs::path(base, day))) {
+
+    # Create the Base Directory
+    invisible(dir.create(fs::path(base, day)))
+
+    # Create the R folder
+    invisible(dir.create(fs::path(base, day, "R")))
+
+    invisible(file.create(fs::path(base, day, "R", paste0(day, ".R"))))
+
+    cat(crayon::cyan(sprintf("Created 30DCC Directory and file for %s", day)))
 
   } else {
     cat(crayon::yellow("Directory Already Exists"))
