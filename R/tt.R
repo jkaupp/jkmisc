@@ -23,6 +23,8 @@ tt_dir <- function(year = lubridate::year(Sys.Date()), week = lubridate::isoweek
 
     cat(crayon::cyan(sprintf("Created TidyTuesday Directory and analysis.R for %s, %s", year, week)))
 
+    rstudioapi::navigateToFile(fs::path(base_tt, year, week, "R", "analysis.R"))
+
   } else {
     cat(crayon::yellow("Directory Already Exists"))
   }
@@ -50,6 +52,8 @@ tdcc_dir <- function(day = lubridate::day(Sys.Date())) {
     invisible(file.create(fs::path(base, day, "R", paste0(day, ".R"))))
 
     cat(crayon::cyan(sprintf("Created 30DCC Directory and file for %s", day)))
+
+    rstudioapi::navigateToFile(fs::path(base, day, "R", paste0(day, ".R")))
 
   } else {
     cat(crayon::yellow("Directory Already Exists"))

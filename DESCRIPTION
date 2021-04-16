@@ -15,7 +15,8 @@ Imports:
     ggtext (>= 0.1.0),
     glue,
     crayon,
-    fs
+    fs,
+    rstudioapi
 RoxygenNote: 7.1.1
 Remotes: 
     clauswilke/ggtext
