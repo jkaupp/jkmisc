@@ -17,6 +17,6 @@ Imports:
     crayon,
     fs,
     rstudioapi
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.3
 Remotes: 
     clauswilke/ggtext
