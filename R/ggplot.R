@@ -1,7 +1,7 @@
 #' My ggplot2 theme heavy credits for influencing the theme function
 #' go to @@hrbrmstr (Bob Rudis)
 #'
-#' It requires installing Oswald fonts unless you change the font parameters
+#' It requires installing Bebas Neue fonts unless you change the font parameters
 #'
 #' \url{https://www.google.com/fonts}
 #'
@@ -30,7 +30,7 @@
 #'
 #' @export
 
-theme_jk <- function(base_family="Oswald",
+theme_jk <- function(base_family="Bebas Neue",
                            base_size = 11,
                            strip_text_family = base_family,
                            strip_text_size = 12,
@@ -256,7 +256,7 @@ scale_dollar_labels <- function(labels){
 #' My ggplot2 theme heavy credits for influencing the theme function
 #' go to @@hrbrmstr (Bob Rudis)
 #'
-#' It requires installing Oswald fonts unless you change the font parameters
+#' It requires installing Bebas Neue fonts unless you change the font parameters
 #'
 #' \url{https://www.google.com/fonts}
 #'
