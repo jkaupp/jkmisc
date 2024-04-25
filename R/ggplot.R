@@ -30,22 +30,23 @@
 #'
 #' @export
 
-theme_jk <- function(base_family="Bebas Neue",
+theme_jk <- function(base_family = "Proxima Nova",
                            base_size = 11,
                            strip_text_family = base_family,
                            strip_text_size = 12,
-                           plot_title_family = "Bebas Neue",
+                           plot_title_family = "Futura",
                            plot_title_size = 18,
                            plot_title_margin = 10,
-                           subtitle_family = "Lato",
+                           subtitle_family = base_family,
                            subtitle_size = 12,
                            subtitle_margin = 15,
-                           caption_family = "Lato",
+                           caption_family = base_family,
                            caption_size = 9,
                            caption_margin = 10,
-                           axis_title_family = "Bebas Neue",
+                           axis_title_family = base_family,
                            axis_title_size = 9,
                            axis_title_just = "mm",
+                           axis_text = TRUE,
                            dark = FALSE,
                            grid = TRUE,
                            axis = FALSE,
@@ -66,15 +67,17 @@ theme_jk <- function(base_family="Bebas Neue",
                                 strip.text = ggplot2::element_text(color = "white"))
 
     grid_color <- "#E5E9F0"
-    tick_color = "#E5E9F0"
+    tick_color <- "#E5E9F0"
+    text_color <- "#FFFFFF"
 
   } else {
 
     grid_color <- "#cccccc"
     tick_color <- "black"
+    text_color <- "black"
   }
 
-  if (inherits(grid, "character") | grid == TRUE) {
+   if (inherits(grid, "character") | grid == TRUE) {
 
     ret <- ret + ggplot2::theme(panel.grid = ggplot2::element_line(color = grid_color, size = 0.10))
     ret <- ret + ggplot2::theme(panel.grid.major = ggplot2::element_line(color = grid_color, size = 0.10))
@@ -142,9 +145,9 @@ theme_jk <- function(base_family="Bebas Neue",
     ret <- ret + ggplot2::theme(axis.title.y = ggplot2::element_text(hjust = yj, size = axis_title_size, family = axis_title_family))
     ret <- ret + ggplot2::theme(strip.text = ggplot2::element_text(hjust = 0, size = strip_text_size, family = strip_text_family))
 
-  ret <- ret + ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0, size = plot_title_size, margin = ggplot2::margin(b = plot_title_margin), family = plot_title_family))
-  ret <- ret + ggplot2::theme(plot.subtitle = ggplot2::element_text(hjust = 0, size = subtitle_size, margin = ggplot2::margin(b = subtitle_margin), family = subtitle_family))
-  ret <- ret + ggplot2::theme(plot.caption = ggplot2::element_text(hjust = 1, size = caption_size, margin = ggplot2::margin(t = caption_margin), family = caption_family))
+    ret <- ret + ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0, size = plot_title_size, margin = ggplot2::margin(b = plot_title_margin), family = plot_title_family))
+    ret <- ret + ggplot2::theme(plot.subtitle = ggplot2::element_text(hjust = 0, size = subtitle_size, margin = ggplot2::margin(b = subtitle_margin), family = subtitle_family))
+    ret <- ret + ggplot2::theme(plot.caption = ggplot2::element_text(hjust = 1, size = caption_size, margin = ggplot2::margin(t = caption_margin), family = caption_family))
 
   } else {
 
@@ -158,6 +161,34 @@ theme_jk <- function(base_family="Bebas Neue",
     ret <- ret + ggplot2::theme(plot.subtitle = ggtext::element_markdown(hjust = 0, size = subtitle_size, margin = ggplot2::margin(b = subtitle_margin), family = subtitle_family))
     ret <- ret + ggplot2::theme(plot.caption = ggtext::element_markdown(hjust = 1, size = caption_size, margin = ggplot2::margin(t = caption_margin), family = caption_family))
 
+  }
+
+  if (inherits(axis_text, "character") | axis_text == TRUE) {
+
+    if (!markdown) {
+
+      ret <- ret + ggplot2::theme(axis.text.x = ggplot2::element_text(color = text_color))
+      ret <- ret + ggplot2::theme(axis.text.y = ggplot2::element_text(color = text_color))
+
+      if (inherits(axis_text, "character")) {
+        if (regexpr("x", axis_text)[1] < 0) ret <- ret + ggplot2::theme(axis.text.x = ggplot2::element_blank())
+        if (regexpr("y", axis_text)[1] < 0) ret <- ret + ggplot2::theme(axis.text.y = ggplot2::element_blank())
+      }
+
+    } else {
+
+      ret <- ret + ggplot2::theme(axis.text.x = ggtext::element_markdown(color = text_color))
+      ret <- ret + ggplot2::theme(axis.text.y = ggtext::element_markdown(color = text_color))
+
+      if (inherits(axis_text, "character")) {
+        if (regexpr("x", axis_text)[1] < 0) ret <- ret + ggplot2::theme(axis.text.x = ggplot2::element_blank())
+        if (regexpr("y", axis_text)[1] < 0) ret <- ret + ggplot2::theme(axis.text.y = ggplot2::element_blank())
+      }
+
+    }
+  } else {
+    ret <- ret + ggplot2::theme(axis.text.x = ggplot2::element_blank())
+    ret <- ret + ggplot2::theme(axis.text.y = ggplot2::element_blank())
   }
 
   ret <- ret + ggplot2::theme(plot.margin = ggplot2::margin(base_size/2, base_size/2, base_size/2, base_size/2))
