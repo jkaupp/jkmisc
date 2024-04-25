@@ -110,7 +110,8 @@ theme_jk <- function(base_family="Bebas Neue",
       ret <- ret + ggplot2::theme(axis.line.y = ggplot2::element_line(color = grid_color, size = 0.15))
     }
   } else {
-    ret <- ret + ggplot2::theme(axis.line = ggplot2::element_blank())
+    ret <- ret + ggplot2::theme(axis.line.x = ggplot2::element_blank())
+    ret <- ret + ggplot2::theme(axis.line.y = ggplot2::element_blank())
   }
 
   if (!ticks) {
