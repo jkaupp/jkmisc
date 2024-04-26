@@ -6,22 +6,23 @@
 go to @hrbrmstr (Bob Rudis)}
 \usage{
 theme_jk(
-  base_family = "Oswald",
+  base_family = "Proxima Nova",
   base_size = 11,
   strip_text_family = base_family,
   strip_text_size = 12,
-  plot_title_family = "Oswald",
+  plot_title_family = "Futura",
   plot_title_size = 18,
   plot_title_margin = 10,
-  subtitle_family = "Lato",
+  subtitle_family = base_family,
   subtitle_size = 12,
   subtitle_margin = 15,
-  caption_family = "Lato",
+  caption_family = base_family,
   caption_size = 9,
   caption_margin = 10,
-  axis_title_family = "Oswald",
+  axis_title_family = base_family,
   axis_title_size = 9,
   axis_title_just = "mm",
+  axis_text = TRUE,
   dark = FALSE,
   grid = TRUE,
   axis = FALSE,
@@ -62,6 +63,8 @@ theme_jk(
 
 \item{axis_title_just}{axis title font justification \code{blmcrt}}
 
+\item{axis_text}{axis labels \code{TRUE}, \code{FALSE}, [\code{xy}]}
+
 \item{dark}{dark mode \code{TRUE}, \code{FALSE}}
 
 \item{grid}{panel grid (\code{TRUE}, \code{FALSE}, or a combination of
@@ -74,7 +77,7 @@ theme_jk(
 \item{markdown}{enabled ggtext markdown styling  \code{TRUE}, \code{FALSE}}
 }
 \description{
-It requires installing Oswald fonts unless you change the font parameters
+It requires installing Bebas Neue fonts unless you change the font parameters
 }
 \details{
 \url{https://www.google.com/fonts}

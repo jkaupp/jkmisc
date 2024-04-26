@@ -13,10 +13,7 @@ Imports:
     ggplot2,
     stringi,
     ggtext (>= 0.1.0),
-    glue,
-    crayon,
-    fs,
-    rstudioapi
-RoxygenNote: 7.2.3
+    glue
+RoxygenNote: 7.3.1
 Remotes: 
     clauswilke/ggtext
