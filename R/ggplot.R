@@ -62,7 +62,7 @@ theme_jk <- function(base_family = "Proxima Nova",
 
   if (dark == TRUE) {
 
-    ret <- ret + ggplot2::theme(plot.background = ggplot2::element_rect(fill ="#2E3440"),
+    ret <- ret + ggplot2::theme(plot.background = ggplot2::element_rect(fill ="#2E3440", color = "#2E3440"),
                                 text = ggplot2::element_text(color = "white"),
                                 axis.text = ggplot2::element_text(color = "white"),
                                 strip.text = ggplot2::element_text(color = "white"))
@@ -73,7 +73,7 @@ theme_jk <- function(base_family = "Proxima Nova",
 
   } else {
 
-    ret <- ret + ggplot2::theme(plot.background = ggplot2::element_rect(fill ="white"),
+    ret <- ret + ggplot2::theme(plot.background = ggplot2::element_rect(fill ="white", color = "white"),
                                 text = ggplot2::element_text(color = "black"),
                                 axis.text = ggplot2::element_text(color = "black"),
                                 strip.text = ggplot2::element_text(color = "black"))
