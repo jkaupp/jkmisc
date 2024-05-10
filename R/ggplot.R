@@ -73,6 +73,11 @@ theme_jk <- function(base_family = "Proxima Nova",
 
   } else {
 
+    ret <- ret + ggplot2::theme(plot.background = ggplot2::element_rect(fill ="white"),
+                                text = ggplot2::element_text(color = "black"),
+                                axis.text = ggplot2::element_text(color = "black"),
+                                strip.text = ggplot2::element_text(color = "black"))
+
     grid_color <- "#cccccc"
     tick_color <- "black"
     text_color <- "black"
